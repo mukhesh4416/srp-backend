@@ -85,7 +85,7 @@ public class SrpController {
 		return this.userinfoService.getAllDevelopers();
 	}
 	
-	//Projects Services
+	//Projects Servicess
 	@GetMapping("/getAllProjectsList")
 	public List<ProjectsDto> getAllProjects(){
 		return this.projectsService.getAllProjects();
