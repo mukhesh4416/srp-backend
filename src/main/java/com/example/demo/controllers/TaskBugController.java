@@ -3,7 +3,6 @@ package com.example.demo.controllers;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +18,6 @@ import com.example.demo.model.TaskTrackerEntity;
 import com.example.demo.service.BugTrackerService;
 import com.example.demo.service.TaskTrackerService;
 
-@CrossOrigin(origins = {"http://localhost:5173", "http://192.168.77.247:5173", "http://192.168.77.199:5173"})
 @RestController
 @RequestMapping("/tracker")
 public class TaskBugController {

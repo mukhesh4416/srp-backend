@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.UserinfoDto;
 import com.example.demo.model.UserinfoEntity;
 import com.example.demo.repository.UserinfoRepository;
@@ -49,10 +50,10 @@ public class UserinfoService {
 		}
 	}
 	
-	public UserinfoEntity loginUser(String userName,String password) {
+	public UserinfoEntity loginUser(LoginDto userData) {
 		try {
-			List<UserinfoEntity> data = this.userinfoRepository.getUserLogin(userName,password);
-			if(this.userinfoRepository.getUserLogin(userName,password).isEmpty()) {
+			List<UserinfoEntity> data = this.userinfoRepository.getUserLogin(userData.getUserName(),userData.getPassword());
+			if(this.userinfoRepository.getUserLogin(userData.getUserName(),userData.getPassword()).isEmpty()) {
 				return data.get(0);
 			}else {
 				return data.get(0);
