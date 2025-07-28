@@ -8,5 +8,9 @@ RUN gradle build -x test
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar app.jar
+
+# Optional: Document exposed port (Render doesn't use this directly)
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# 🟢 This binds Spring Boot to Render's assigned port
+ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=${PORT}"]
