@@ -1,14 +1,12 @@
-# Use a lightweight OpenJDK image as the base image
-FROM openjdk:17-jdk-slim
-
-# Set working directory inside the container
+# Stage 1: Build the app
+FROM gradle:8.5-jdk17 AS builder
 WORKDIR /app
+COPY . .
+RUN gradle build -x test
 
-# Copy the jar file from your build to the container
-COPY build/libs/srp-backend-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the port your Spring Boot app runs on (default 8080)
+# Stage 2: Run the app
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=builder /app/build/libs/*.jar app.jar
 EXPOSE 8080
-
-# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
