@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.dto.AttachmentsDto;
 import com.example.demo.dto.ChatsDto;
 import com.example.demo.dto.GlobalApprovalsDto;
+import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.ProjectsDto;
 import com.example.demo.dto.UserinfoDto;
 import com.example.demo.model.AttachmentsEntity;
@@ -30,7 +31,7 @@ import com.example.demo.service.ProjectsService;
 import com.example.demo.service.UserinfoService;
 
 
-@CrossOrigin(origins = {"http://localhost:5173", "http://192.168.77.247:5173", "http://192.168.77.199:5173"})
+//@CrossOrigin(origins = {"http://localhost:5173", "http://192.168.77.247:5173"})
 @RestController
 @RequestMapping("/srp")
 public class SrpController {
@@ -56,8 +57,8 @@ public class SrpController {
 	}
 	
 	@PostMapping("/loginUser")
-	public UserinfoEntity getUserLogin(@RequestParam("userName") String userName, @RequestParam("password") String password){
-		return this.userinfoService.loginUser(userName, password);
+	public UserinfoEntity getUserLogin(@RequestBody LoginDto data){
+		return this.userinfoService.loginUser(data);
 	}
 	
 	@GetMapping("/getAllUsers")
